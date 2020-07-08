@@ -27,5 +27,11 @@ class Entry {
             cb(null, entries);
         })
     }
+    static count(cb) {
+        Entry.getRange(0, -1, (err, entries) => {
+            if (err) return cb(err);
+            cb(err, entries.length);
+        })
+    }
 }
 module.exports = Entry;

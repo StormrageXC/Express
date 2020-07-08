@@ -28,9 +28,15 @@ class User {
             bcrypt.hash(pass, user.salt, (err, hash) => {
                 if (err) return cb(err);
                 if (hash === user.pass) return cb(null, user);
-                cb();
+                cb(null, {});
             })
         })
+    }
+    toJson() {
+        return {
+            id: this.id,
+            name: this.name
+        }
     }
     save(cb) {
         if (this.id) {
@@ -67,13 +73,4 @@ class User {
         })
     }
 }
-User.getName('tobi', (err, user) => {
-    if (err) console.err(err);
-    console.log(user);
-});
-// const user = new User({ name: 'example', pass: 'test' });
-// user.save((err) => {
-//     if (err) console.error(err);
-//     console.log('user id %d', user.id);
-// })
 module.exports = User;

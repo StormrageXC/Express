@@ -26,6 +26,7 @@ exports.lengthAbove = (texts, len) => {
         if (getText(req, texts).length > len) {
             next();
         } else {
+            res.error(`${texts} must have more than ${len} characters`)
             res.redirect('back');
         }
     }
